@@ -1,0 +1,79 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class SelectionSortExample {  
+    public static void selectionSort(int[] arr){  
+        for (int i = 0; i < arr.length - 1; i++)  
+        {  
+            int minIndex = i;  
+            for (int j = i + 1; j < arr.length; j++){  
+                if (arr[j] < arr[minIndex]){  
+                    minIindex = j;//searching for lowest index  
+                }  
+            }  
+            int temp = arr[i];   
+            arr[i] = arr[minIndex];  
+            arr[minIndex] = temp;  
+        }  
+    }  
+       
+    public static void main(String a[]){ 
+	Scanner sc = new Scanner(System.in);
+	Random rand = new Random();
+	System.out.println("Enter the size of array: ");
+	int n = sc.nextInt(); 
+        int[] arr = new int[n];
+	for (int i=0; i<n; i++){
+		arr[i] = rand.nextInt(10000);
+		}
+	long starttime = System.nanoTime();        
+		  
+        System.out.println("Before Selection Sort");  
+        for(int i:arr){  
+            System.out.print(i+" ");  
+        }  
+        System.out.println();  
+          
+        selectionSort(arr);//sorting array using selection sort  
+        long endtime = System.nanoTime(); 
+        System.out.println("After Selection Sort");  
+        for(int i:arr){  
+            System.out.print(i+" ");
+	}
+	double timetaken = (endtime - starttime)/1000000;
+	System.out.println("\nTime taken = "+timtaken+" ms");
+	double best = n * n;
+	double average = best;
+	double worst = best;
+	System.out.println("Best case= "+Math.round(best)+"\nAverage Case= "+Math.round(average)+"\nWorst Case = "+Math.round(worst));
+  
+          
+    }  
+}  
+
+
+
+
+
+
+1. Start
+2. input N
+3. Repeat for i=1 to N
+	Read (A[i])
+4. Repeat for i=1 to N
+	Repeat for j=i+1 to N-1
+	if (A[i]>A[j])
+		Let temp = A[i]
+		A[i]=A[j]
+		A[j]=temp
+		end of j for loop
+		end of i for loop
+
+5. Repeat for i=1 to N
+	Print(A[i])
+	end of for loop i
+6. Stop
+
+
+
+

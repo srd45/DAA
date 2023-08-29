@@ -1,0 +1,120 @@
+import java.util.Scanner;
+
+public class dij {
+    
+    public static void main(String[] args) {
+    
+        Scanner sc = new Scanner(System.in);
+        int cost[][]= new int[10][10];
+        int visited[] = new int[10];
+        intdist[] = new int[10];
+        int i, j, k, sv, u = 0, w = 0, n, min;
+        
+        System.out.println("Enter the Number of Vertices: ");
+        n = sc.nextInt();
+        
+          System.out.println("Enter the Cost Matrix:");
+        for(i=1; i<=n; i++)
+        {
+           for(j=1; j<=n; j++)
+             {
+                    cost[i][j] = sc.nextInt();
+             }
+        }   
+        
+        System.out.println("Enter the Source Vertex: ");
+        sv = sc.nextInt();
+        
+        for(i=1;i<=n;i++)
+        {
+            visited[i] = 0;               // visited array for all vertices is set to zero
+            dist[i] = cost[sv][i];	// cost from source vertex to all other vertices are stored in dist[] 	
+        }
+        visited[sv] = 1;
+        dist[sv] = 0;
+        
+        for(k=2;k<=n;k++)
+        {
+            min = 999;
+        
+            for(w=1;w<=n;w++)
+            {
+                if(visited[w] == 0 &&dist[w] < min)
+                {
+                    min = dist[w];
+                    u = w;
+                }
+            }
+            
+            visited[u] = 1;
+            
+            for(w=1;w<=n;w++)
+            {
+                if(visited[w]==0)
+                {
+                    if((dist[u]+cost[u][w])<dist[w])
+                        dist[w] = dist[u] + cost[u][w];
+                }
+            }
+        }
+        
+        System.out.println("\n\n\t Dijkstra's Algorithm\n");
+        System.out.println("\n\tSource    Destination    Cost");
+        for(i=1;i<=n;i++)
+            System.out.println("\t   "+sv+"\t\t"+i+"\t   "+dist[i]);
+    }
+}
+
+
+
+
+
+
+
+
+functionDijkstra(Graph,source):
+1	create vertex set Q
+2	for each vertex v in Graph:	//Initialization
+3	dist[v]?INFINITY	//Unknowndistancefromsourcetov
+4	prev[v]?UNDEFINED//previousnodeinoptimalpathfromsource
+5	add v to Q//AllnodesinitiallyinQ(unvisitednodes)
+6	dist[source]?0	//Distancefromsourcetosource
+7	while Q isnot empty:
+8	u?vertex in Q with min dist[u]//Nodewiththeleastdistance
+9	//willbeselectedfirst
+10	remove u from Q
+
+12	for each neighbor v of u:	//wherevisstillinQ.
+13	alt?dist[u]+ length(u,v)
+14	if alt<dist[v]:	//Ashorter pathtov hasbeenfound
+15	dist[v]? alt
+16	prev[v]? u
+17	return dist[],prev[]
+
+
+
+
+
+
+
+
+
+Enter the Number of Vertices: 
+4
+Enter the Cost Matrix:
+999 1 5 2
+1 999 999 999
+5 999 999 3
+2 999 3 999
+Enter the Source Vertex: 
+1
+
+
+     Dijkstra's Algorithm
+
+
+    Source    Destination    Cost
+       1                1               0
+       1                2               1
+       1                3               5
+       1                4               2

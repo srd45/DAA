@@ -1,0 +1,131 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class mergesort
+{
+
+    public static void main(String[] args) 
+    {
+        
+        Scanner sc = new Scanner(System.in);
+        Random r = new Random();
+        System.out.print("Enter the size of an Array : ");
+        int n = sc.nextInt();
+        int array [] = new int[n];
+        long start, end;
+       
+        for(int i = 0; i <n; i++)
+        {
+              array[i] = r.nextInt(n)+1;
+        }
+
+        System.out.println("\n\n Merge Sort\n\n");
+        System.out.println("Values Before the sort:\n");
+ 
+        for(int i = 0; i < n; i++)
+              System.out.println(array[i]);
+ 
+        start=System.nanoTime();
+
+        merge_sort(array,0, n-1);
+          
+          end=System.nanoTime();
+
+        
+        System.out.print("Values after the sort:\n");
+        
+        for(int i = 0; i <n; i++)
+               System.out.println(array[i]);
+          
+          System.out.println("\n\nThe time taken to sort is "+((end-start)/1000000)+"ms");
+          double best = n*Math.log(n);
+          double avg = best;
+          double worst = best;
+          System.out.print("\nBest Case = "+Math.round(best)+"\nAverage = "+Math.round(avg)+"\nWorst = "+Math.round(worst));
+       }
+
+    static public void merge(int array[], int low, int mid, int high)
+    {
+        inti,j,k;
+        int c[] = new int[100000];
+        k = i = low;
+        j = mid+1;
+        while(i<=mid && j<=high)
+        {
+            if(array[i] <= array[j])
+                c[k++] = array[i++];
+            else 
+                c[k++] = array[j++];
+        }
+        
+        while(i <= mid)
+            c[k++] = array[i++];
+        while(j <= high)
+            c[k++] = array[j++];
+        for(i=low;i<=k-1;i++)
+            array[i] = c[i];
+    }
+    
+    static public void merge_sort(int array[], int low, int high)
+    {
+        int mid;
+        
+        if (low < high)
+        {
+            mid = (low + high)/2;
+            merge_sort(array,low,mid);
+            merge_sort(array,mid+1,high);
+            merge(array,low,mid,high);
+        }
+    }
+}
+
+
+
+ALGORITHM:
+Mergesort
+functionMergeSort(A[1..n],p,r)
+if(p< r)
+q=floor((p+r)/2 )
+MergeSort(A[1..n],p,q)
+MergeSort(A[1..n],q+1,r)
+Merge(A[1..n],p,q,r)
+
+functiondisplay()
+for i= 1 to n
+printA[i]
+
+function Merge(A[1..n], p, q, r)11.	n1 =q - p +1
+n2 = r - q
+DefinetwoarraysL[1..(n1+ 1)]andR[1...(n2+ 1)]
+for i= 1 to n1
+15.	L[i] =A[p+i-1]
+16.	L[n1+1]= 100000000
+17.	for j = 1 to n2
+18.	R[j] =A[q +j]
+19.	R[n2+1]=100000000
+20	x=1
+21	y=1
+22.	for k= p to r
+23.	if(L[x] <=R[y])
+24.	A[k]=L[x]
+25.	x = x + 1
+26.	else
+27.	A[k] =R[y]
+28.	y = y 
+
+
+
+
+
+
+
+
+Output:
+Sl no	N	Time taken	Best case 	Average case	Worst case
+1	5500	1167	47369	47369	47369
+2	6000	1267	52197	52197	52197
+3	6500	1286	57067	57067	57067
+4	7000	1394	61967	61967	61967
+5	7500	1476	66920	66920	66920
+
