@@ -36,3 +36,26 @@ public class FloydWarshall {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+Output:
+Enter No. of Vertices: 
+4
+Enter Weight Matrix
+0      999   3   999
+2      0     999 999
+999   7      0    1
+6     999   999  0
+    The Distance Matrix
+    0    10    3    4
+    2    0      5    6
+    7    7      0    1
+    6    16    9    0
+
