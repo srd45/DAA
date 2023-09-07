@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class FloydWarshall {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int i, j, k, n;
+        int d[][] = new int[10][10];
+
+        System.out.println("Enter No. of Vertices: ");
+        n = sc.nextInt();
+
+        System.out.println("Enter Weight Matrix");
+        for (i = 1; i <= n; i++) {
+            for (j = 1; j <= n; j++) {
+                d[i][j] = sc.nextInt();
+            }
+        }
+
+        for (k = 1; k <= n; k++) {
+            for (i = 1; i <= n; i++) {
+                for (j = 1; j <= n; j++) {
+                    if ((d[i][k] + d[k][j]) < d[i][j]) {
+                        d[i][j] = d[i][k] + d[k][j];
+                    }
+                }
+            }
+        }
+
+        System.out.println("\n\tThe Distance Matrix\n");
+        for (i = 1; i <= n; i++) {
+            for (j = 1; j <= n; j++) {
+                System.out.print("\t" + d[i][j]);
+            }
+
+            System.out.println();
+        }
+    }
+}
